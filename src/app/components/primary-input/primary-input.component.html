@@ -2,10 +2,12 @@
   <label [for]="inputName">{{ label }}</label>
   <div class="input-content">
     <input
+    [id]="inputName"
     [type]="type"
     [placeholder]="placeholder"
     [value]="value"
     (input)="onInput($event)"
+    autocomplete="on"
     />
     <div class="icon">
       <ng-content></ng-content>

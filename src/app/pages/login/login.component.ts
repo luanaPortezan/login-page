@@ -27,4 +27,8 @@ export class LoginComponent{
         ),
     });
   }
+
+  submit(){
+    console.log(this.loginForm.value);
+  };
 }

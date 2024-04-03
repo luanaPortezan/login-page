@@ -29,8 +29,8 @@ export class PrimaryInputComponent  implements ControlValueAccessor{
   onChange: any = () => {};
   onTouched: any = () => {};
 
-  onInput(evento: Event) {
-    const value = (evento.target as HTMLInputElement).value;
+  onInput(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
     this.onChange(value);
   }
 
@@ -45,4 +45,6 @@ export class PrimaryInputComponent  implements ControlValueAccessor{
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
+
+  setDisabledState(isDisabled: boolean): void {}
 }

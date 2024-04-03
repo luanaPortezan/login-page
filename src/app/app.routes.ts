@@ -5,6 +5,11 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-    
+
+  },
+
+  {
+    path: 'signup',
+    component: LoginComponent, //then implement the registration page
   }
 ];

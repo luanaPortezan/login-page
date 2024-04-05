@@ -3,6 +3,7 @@ import { DefaultLoginLayoutComponent } from '../../components/default-login-layo
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,9 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     PrimaryInputComponent,
   ],
+  providers: [
+    LoginService,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -20,6 +24,7 @@ export class LoginComponent{
 
   constructor(
     private router: Router,
+    private loginService: LoginService,
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl(
@@ -32,10 +37,19 @@ export class LoginComponent{
   }
 
   submit(){
-    console.log(this.loginForm.value);
+    this.loginService.login(
+      this.loginForm.value.email,
+      this.loginForm.value.password).subscribe({
+        next:() => {
+          console.log('Login successful');
+        },
+        error: (error) => {
+          console.error('There was an error!', error);
+        }
+      });
   };
 
   navigate(){
-    this.router.navigate(['/signup'])
+    this.router.navigate(['signup'])
   };
 }
